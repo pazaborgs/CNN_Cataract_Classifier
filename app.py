@@ -8,7 +8,7 @@ import pandas as pd
 import plotly.express as px
 
 
-@st.cache_resourcer
+@st.cache_resource
 def load_model():
     url = 'https://drive.google.com/uc?id=15pPkPuEk4YJwEkYBAwE9MEnQJ8JmJF84'
     gdown.download(url, 'catarata_model.keras')
@@ -37,7 +37,7 @@ def prev(interpreter, image):
     input_details = interpreter.get_input_details()
     output_details = interpreter.get_output_details()
 
-    interpreter.set_tensor(input_details[0]['index'],imagem) 
+    interpreter.set_tensor(input_details[0]['index'],image) 
 
     interpreter.invoke()
 
@@ -49,8 +49,8 @@ def prev(interpreter, image):
     df['classes'] = classes                             # classes
     df['probabilidades (%)'] = 100*output_data[0]       # output prob
 
-    fig = px.bar(df, y = 'classes', x = 'probabilidades (%)', orientation = 'h', text='probabilidades (%)', title='Probabilidade de maturidade de catarata.)
-
+    fig = px.bar(df, y = 'classes', x = 'probabilidades (%)', orientation = 'h', text='probabilidades (%)', title='Probabilidade de maturidade de catarata')
+    st.plotly.chart(fig)
 
 
 
