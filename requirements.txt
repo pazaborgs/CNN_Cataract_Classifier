@@ -1,0 +1,9 @@
+gdown
+tensorflow
+io
+PIL
+numpy
+pandas
+streamlit
+pillow
+plotly
